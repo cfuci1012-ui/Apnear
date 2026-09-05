@@ -1,0 +1,155 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\geometry{margin=2.5cm}
+
+\title{Antitransformada de Laplace y representación temporal}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Función dada}
+
+Se considera la función de transferencia o transformada:
+
+\begin{equation}
+    Y(s)=\frac{s-1}{(s+2)(s+4)}.
+\end{equation}
+
+Se busca obtener la señal $y(t)$ en el dominio del tiempo y representarla gráficamente.
+
+\section*{Descomposición en fracciones simples}
+
+Planteamos:
+
+\begin{equation}
+    \frac{s-1}{(s+2)(s+4)}
+    =\frac{A}{s+2}+\frac{B}{s+4}.
+\end{equation}
+
+Multiplicando por $(s+2)(s+4)$:
+
+\begin{align}
+    s-1 &= A(s+4)+B(s+2),\\
+    s-1 &= (A+B)s+(4A+2B).
+\end{align}
+
+Igualando coeficientes:
+
+\begin{equation}
+    \begin{cases}
+        A+B=1,\\
+        4A+2B=-1.
+    \end{cases}
+\end{equation}
+
+De donde:
+
+\begin{equation}
+    A=-\frac{3}{2},\qquad B=\frac{5}{2}.
+\end{equation}
+
+Por lo tanto:
+
+\begin{equation}
+    Y(s)=-\frac{3}{2}\frac{1}{s+2}
+    +\frac{5}{2}\frac{1}{s+4}.
+\end{equation}
+
+\section*{Expresión en el dominio del tiempo}
+
+Usando la pareja de transformadas de Laplace
+
+\begin{equation}
+    \mathcal{L}^{-1}\left\{\frac{1}{s+a}\right\}=e^{-at}u(t),
+\end{equation}
+
+se obtiene:
+
+\begin{equation}
+    \boxed{
+    y(t)=\left(-\frac{3}{2}e^{-2t}+\frac{5}{2}e^{-4t}\right)u(t)
+    }.
+\end{equation}
+
+Para $t\geq 0$:
+
+\begin{equation}
+    \boxed{
+    y(t)=-\frac{3}{2}e^{-2t}+\frac{5}{2}e^{-4t}
+    }.
+\end{equation}
+
+\section*{Características de la señal}
+
+La señal comienza en:
+
+\begin{equation}
+    y(0^+)=1.
+\end{equation}
+
+El cruce por cero ocurre cuando:
+
+\begin{align}
+    -\frac{3}{2}e^{-2t}+\frac{5}{2}e^{-4t}&=0,\\
+    t&=\frac{1}{2}\ln\left(\frac{5}{3}\right)\approx 0.2554.
+\end{align}
+
+Además,
+
+\begin{equation}
+    \lim_{t\to\infty}y(t)=0,
+\end{equation}
+
+aproximándose al cero desde valores negativos.
+
+\section*{Gráfica}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=14cm,
+    height=8cm,
+    axis lines=middle,
+    xlabel={$t$},
+    ylabel={$y(t)$},
+    xmin=0, xmax=3,
+    ymin=-0.16, ymax=1.08,
+    xtick={0,0.5,1,1.5,2,2.5,3},
+    ytick={-0.1,0,0.2,0.4,0.6,0.8,1},
+    grid=both,
+    minor tick num=1,
+    samples=200,
+    domain=0:3,
+    smooth,
+    thick,
+    blue
+]
+    \addplot {-(3/2)*exp(-2*x)+(5/2)*exp(-4*x)};
+    \addplot[only marks, mark=*, mark size=1.6pt, red]
+        coordinates {(0,1) (0.2554,0)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section*{Resultado final}
+
+\begin{equation}
+    \boxed{
+    Y(s)=\frac{s-1}{(s+2)(s+4)}
+    \quad\Longleftrightarrow\quad
+    y(t)=\left(-\frac{3}{2}e^{-2t}+\frac{5}{2}e^{-4t}\right)u(t)
+    }.
+\end{equation}
+
+\end{document}
