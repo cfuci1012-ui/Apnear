@@ -129,6 +129,60 @@ Finalmente, despejando $t$:
     }.
 \end{equation}
 
+\section*{Deducción del mínimo absoluto}
+
+Definimos, para todo $t\in\mathbb{R}$,
+
+\begin{equation}
+    f(t)=\frac{5}{2}e^{-4t}-\frac{3}{2}e^{-2t}.
+\end{equation}
+
+Derivando con respecto a $t$:
+
+\begin{equation}
+    f'(t)=-10e^{-4t}+3e^{-2t}.
+\end{equation}
+
+Igualamos la derivada a cero:
+
+\begin{align}
+    -10e^{-4t}+3e^{-2t}&=0,\\
+    3e^{-2t}&=10e^{-4t},\\
+    e^{2t}&=\frac{10}{3}.
+\end{align}
+
+Aplicando el logaritmo neperiano:
+
+\begin{equation}
+    t_{\min}=\frac{1}{2}\ln\left(\frac{10}{3}\right)
+    \approx 0.6020.
+\end{equation}
+
+La segunda derivada es
+
+\begin{equation}
+    f''(t)=40e^{-4t}-6e^{-2t}.
+\end{equation}
+
+En el punto crítico se cumple $e^{-2t_{\min}}=3/10$ y
+$e^{-4t_{\min}}=9/100$. Por tanto,
+
+\begin{equation}
+    f''(t_{\min})=40\left(\frac{9}{100}\right)
+    -6\left(\frac{3}{10}\right)=\frac{9}{5}>0,
+\end{equation}
+
+lo que confirma que el punto crítico es un mínimo. Evaluando la función:
+
+\begin{align}
+    f(t_{\min})&=\frac{5}{2}\left(\frac{9}{100}\right)
+    -\frac{3}{2}\left(\frac{3}{10}\right)\\
+    &=\boxed{-\frac{9}{40}=-0.225}.
+\end{align}
+
+Además, $f(t)\to+\infty$ cuando $t\to-\infty$ y
+$f(t)\to0^-$ cuando $t\to+\infty$, por lo que este mínimo es absoluto.
+
 \section*{Características y gráfica}
 
 La señal comienza en $y_1(0^+)=1$. El cruce por cero ocurre en
@@ -148,9 +202,9 @@ y tiende a cero desde valores negativos cuando $t\to\infty$.
     xlabel={$t$},
     ylabel={$y_1(t)$},
     xmin=0, xmax=3,
-    ymin=-0.16, ymax=1.08,
+    ymin=-0.25, ymax=1.08,
     xtick={0,0.5,1,1.5,2,2.5,3},
-    ytick={-0.1,0,0.2,0.4,0.6,0.8,1},
+    ytick={-0.2,0,0.2,0.4,0.6,0.8,1},
     grid=both,
     minor tick num=1,
     samples=200,
