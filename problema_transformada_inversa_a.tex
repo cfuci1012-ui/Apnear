@@ -86,6 +86,49 @@ Para $t\geq 0$:
     y_1(t)=-\frac{3}{2}e^{-2t}+\frac{5}{2}e^{-4t}.
 \end{equation}
 
+\section*{Deducción del cruce por cero}
+
+Para encontrar el instante en que la señal se hace cero, igualamos la expresión a cero:
+
+\begin{equation}
+    \frac{5}{2}e^{-4t}-\frac{3}{2}e^{-2t}=0.
+\end{equation}
+
+Pasando el término negativo al segundo miembro:
+
+\begin{equation}
+    \frac{5}{2}e^{-4t}=\frac{3}{2}e^{-2t}.
+\end{equation}
+
+Multiplicando ambos lados por $2$:
+
+\begin{equation}
+    5e^{-4t}=3e^{-2t}.
+\end{equation}
+
+Dividiendo por $3e^{-4t}$, o equivalentemente multiplicando por $e^{4t}$:
+
+\begin{align}
+    \frac{5}{3}&=\frac{e^{-2t}}{e^{-4t}},\\
+    \frac{5}{3}&=e^{-2t-(-4t)}=e^{2t}.
+\end{align}
+
+Aplicando el logaritmo neperiano a ambos lados:
+
+\begin{align}
+    \ln\left(\frac{5}{3}\right)&=\ln\left(e^{2t}\right),\\
+    \ln\left(\frac{5}{3}\right)&=2t.
+\end{align}
+
+Finalmente, despejando $t$:
+
+\begin{equation}
+    \boxed{
+    t=\frac{1}{2}\ln\left(\frac{5}{3}\right)
+    \approx 0.2554
+    }.
+\end{equation}
+
 \section*{Características y gráfica}
 
 La señal comienza en $y_1(0^+)=1$. El cruce por cero ocurre en
