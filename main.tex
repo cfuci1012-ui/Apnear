@@ -1,0 +1,119 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{circuitikz}
+
+\geometry{margin=2.5cm}
+
+\title{Problema 4-1: Función de transferencia de un circuito RC}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Planteamiento}
+
+El circuito está formado por una resistencia $R_1$ en serie con una rama constituida
+por un capacitor $C$ y una resistencia $R_2$ conectados en serie. La tensión de entrada
+es $E_1(s)$ y la tensión de salida $E_2(s)$ se mide sobre la rama $C$--$R_2$.
+
+\begin{center}
+\begin{circuitikz}[american voltages]
+    \draw
+    (0,0) to[voltage source,l=$E_1(s)$] (0,3)
+    (0,3) to[R,l=$R_1$] (3,3)
+    (3,3) to[C,l=$C$] (3,1.5)
+    (3,1.5) to[R,l=$R_2$] (3,0)
+    (3,0) -- (0,0);
+    \draw (3.4,0) to[open,v^=$E_2(s)$] (3.4,3);
+\end{circuitikz}
+\end{center}
+
+\section*{Desarrollo}
+
+La impedancia del capacitor en el dominio de Laplace es
+
+\begin{equation}
+    Z_C(s)=\frac{1}{sC}.
+\end{equation}
+
+Por tanto, la impedancia de la rama donde se mide la salida es
+
+\begin{equation}
+    Z_{CR_2}(s)=R_2+\frac{1}{sC}.
+\end{equation}
+
+Aplicando la regla del divisor de tensión:
+
+\begin{equation}
+    \frac{E_2(s)}{E_1(s)}
+    =\frac{Z_{CR_2}(s)}{R_1+Z_{CR_2}(s)}.
+\end{equation}
+
+Sustituyendo la impedancia de la rama RC:
+
+\begin{align}
+    H(s)&=\frac{E_2(s)}{E_1(s)}\\[4pt]
+    &=\frac{R_2+\dfrac{1}{sC}}
+            {R_1+R_2+\dfrac{1}{sC}}.
+\end{align}
+
+Multiplicando numerador y denominador por $sC$, se obtiene la función de transferencia:
+
+\begin{equation}
+    \boxed{
+    H(s)=\frac{E_2(s)}{E_1(s)}
+    =\frac{1+sCR_2}{1+sC(R_1+R_2)}
+    }.
+\end{equation}
+
+\section*{Polo y cero}
+
+El cero se obtiene anulando el numerador:
+
+\begin{equation}
+    s_z=-\frac{1}{CR_2}.
+\end{equation}
+
+El polo se obtiene anulando el denominador:
+
+\begin{equation}
+    s_p=-\frac{1}{C(R_1+R_2)}.
+\end{equation}
+
+Una forma alternativa de escribir la función de transferencia es
+
+\begin{equation}
+    H(s)=
+    \frac{R_2}{R_1+R_2}
+    \frac{1+sCR_2}
+         {1+sC\dfrac{R_1R_2}{R_1+R_2}}.
+\end{equation}
+
+\section*{Comportamiento en frecuencia}
+
+En corriente continua ($s=0$), el capacitor se comporta como un circuito abierto:
+
+\begin{equation}
+    H(0)=\frac{R_2}{R_1+R_2}.
+\end{equation}
+
+Para frecuencias muy altas ($s\rightarrow\infty$), el capacitor se comporta como un
+cortocircuito:
+
+\begin{equation}
+    \lim_{s\rightarrow\infty}H(s)=1.
+\end{equation}
+
+Por ello, el circuito no es un pasa-altos ideal. Es una red de adelanto o una red de
+transici\'on, cuya ganancia aumenta desde $R_2/(R_1+R_2)$ en baja frecuencia hasta $1$
+en alta frecuencia.
+
+\end{document}
